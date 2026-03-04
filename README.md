@@ -1,22 +1,25 @@
-# Multiplayer Flappy Bird Game
-A real-time multiplayer Flappy Bird-style web game where multiple players can join, compete, and view live scores. The game uses WebSockets to synchronize gameplay and provide real-time interaction between players.
+# A Multiplayer Flappy Bird Game
+A [node.js](https://nodejs.org/en/docs/) application that uses [Express](https://expressjs.com/) and [Socket.io](https://socket.io/docs/v4/client-api/) to create a multiplayer [flappy bird](https://en.wikipedia.org/wiki/Flappy_Bird) game, where users can play and connect real-time.
 
-## Features
-- User signup and login authentication
-- Real-time multiplayer gameplay
-- Live leaderboard and score tracking
-- In-game chat between players
-- Dynamic game state updates using WebSockets
-- Responsive browser-based game interface
+## Functionality
 
-## Tech Stack
-**Frontend:** HTML, CSS, JavaScript, jQuery  
-**Backend:** Node.js, Express.js, Socket.IO  
-**Database:** SQLite  
-**Authentication:** bcrypt
+### Authentication
 
-## Key Highlights
-- Real-time multiplayer communication using WebSockets
-- Full-stack game development
-- Secure user authentication system
-- Live leaderboards and chat functionality
+The web app begins with prompting the user to either sign-up or login. All user data (usernames, passwords, and high scores) are stored in a [SQLite3](https://www.npmjs.com/package/sqlite3) database.
+To maintain user privacy, the passwords are encrypted using [bcrypt](https://www.npmjs.com/package/bcrypt).
+
+![authentication img](/images/authentication.png)
+
+### Flappy Bird Game
+
+When one person starts the game, the game starts for all active users at the same time. During game play, you can see other people's scores and their color font turns red when their bird dies. The UI for the game is seen in the demo video below.
+
+https://user-images.githubusercontent.com/81705278/136645600-cdc33bd2-e808-45ee-a87f-f004178dd487.mp4
+
+### All Time Leaderboard
+
+In a separate table of the database, a Leaderboard is kept for the top 10 highest scores and the corresponding usernames. The table is always kept in order from highest to lowest using a 2D version of bubble sort.
+
+### Chatroom
+
+There is a chatroom on the right-hand side, so users can interact with each other directly. The purpose of this add-on was so users can communicate when to start the game, and if some users die early and get bored, they can also communicate to pass time until the game finishes. Similar to the flappy bird game itself, the chatroom is built using Socket.io for real-time communication. 
